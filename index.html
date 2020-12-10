@@ -400,7 +400,55 @@ $(window).on('load resize', function(){
 });
 
 
+  $.getJSON("https://spreadsheets.google.com/feeds/list/1xcMllcU6-iuyTO-y1Uky9EjbgFzNUdquimWi2hhblkk/1/public/values?alt=json", function(data) {
 
+    var sheetData = data.feed.entry;
+
+    var i;
+    for (i = 0; i < sheetData.length; i++) {
+
+      var id = data.feed.entry[i]['gsx$title']['$t'];
+      var expected = data.feed.entry[i]['gsx$desc']['$t'];
+      var result = data.feed.entry[i]['gsx$poster']['$t'];
+      var status = data.feed.entry[i]['gsx$rating']['$t'];
+      var lastupdate = data.feed.entry[i]['gsx$linkurl']['$t'];
+      var proupdate = data.feed.entry[i]['gsx$shortid']['$t'];
+
+
+
+
+
+
+      document.getElementById('displayz').innerHTML += (
+
+        '<section class="product-detail \n' +
+        proupdate +
+        ' hide">\n' +
+        '<div class="product-detail-inner"><a class="product-detail-close">X</a> \n' +
+        '<div class="product-detail-image"><img src=""/></div>\n' +
+        '<div class="product-detail-text">\n' +
+        '<h3>' +
+        id +
+        '</h3>\n' +
+        '<p>' +
+        expected +
+        '</p>\n' +
+        '<a data-target=".modal-1" data-toggle="modal" data-the-video="' +
+        lastupdate +
+        '" class="btn btn-primary">Fragman</a>\n' +
+        '</div>\n' +
+        '</div>\n' +
+        '</section>'
+
+
+      );
+
+$('.product-detail-close').on('click', function() {
+  $('.product-detail').addClass('hide');
+});
+
+    }
+  });
   
 
 
