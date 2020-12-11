@@ -271,26 +271,28 @@ a.btn.btn-primary {
 }
 
 </style>
-
+	
+	
 </head>
 <body>
 
 
 <section class="items">
-<div class="carouselOfImages">
+<div id="imgCarou" class="carouselOfImages">
  
   <div class="carouselImage" style="background-size:cover;">
     <img data-tab="thor" src="https://mikeantjones.files.wordpress.com/2012/04/thor-film-poster.jpg"/>
   </div>
   
-	<div class="carouselImage" style="background-size:cover;">
-    <img data-tab="batman" src="https://c4.wallpaperflare.com/wallpaper/178/887/600/2008-dark-city-fire-wallpaper-preview.jpg"/>
-    </div>
-	
+  
+
+  
 </div>
 </section>
 
 <div id="displayz">
+
+
 
 <section class="product-detail thor hide">
   <div class="product-detail-inner"><a class="product-detail-close">X</a>
@@ -302,10 +304,15 @@ a.btn.btn-primary {
     </div>
   </div>
 </section>
-	
+
+
+
+
+
+
 
 </div>
-	
+
 <div id="dark"></div>
 <div id="lightbox"></div>
     <div aria-labelledby="modal-1-label" class="modal fade modal-media modal-video modal-slim modal-1" role="dialog" tabindex="-1">
@@ -321,9 +328,76 @@ a.btn.btn-primary {
 </div>
 
 
+
+
+
+
+
 <script>
  
- $(document).ready(function() {
+  $.getJSON("https://spreadsheets.google.com/feeds/list/1xcMllcU6-iuyTO-y1Uky9EjbgFzNUdquimWi2hhblkk/1/public/values?alt=json", function(data) {
+  
+  
+
+    var sheetData = data.feed.entry;
+    
+    
+
+    var i;
+    for (i = 0; i < sheetData.length; i++) {
+
+      var id = data.feed.entry[i]['gsx$title']['$t'];
+      var expected = data.feed.entry[i]['gsx$desc']['$t'];
+      var result = data.feed.entry[i]['gsx$poster']['$t'];
+      var status = data.feed.entry[i]['gsx$rating']['$t'];
+      var lastupdate = data.feed.entry[i]['gsx$linkurl']['$t'];
+      var proupdate = data.feed.entry[i]['gsx$shortid']['$t'];
+
+
+
+
+
+
+      document.getElementById('displayz').innerHTML += (
+
+        '<section class="product-detail \n' +
+        proupdate +
+        ' hide">\n' +
+        '<div class="product-detail-inner"><a class="product-detail-close">X</a> \n' +
+        '<div class="product-detail-image"><img src=""/></div>\n' +
+        '<div class="product-detail-text">\n' +
+        '<h3>' +
+        id +
+        '</h3>\n' +
+        '<p>' +
+        expected +
+        '</p>\n' +
+        '<a data-target=".modal-1" data-toggle="modal" data-the-video="' +
+        lastupdate +
+        '" class="btn btn-primary">Fragman</a>\n' +
+        '</div>\n' +
+        '</div>\n' +
+        '</section>'
+
+
+      );
+      
+      document.getElementById('imgCarou').innerHTML += (
+       
+       '<div class="carouselImage" style="background-size:cover;">\n' +
+       '<img data-tab=' + proupdate + '  src="' +
+       result + ' "/> \n' + 
+       '</div>'
+       
+       
+       
+       
+       );
+      
+
+//javascript def //
+
+$(document).ready(function() {
 var $imagesCarousel = $('.carouselOfImages').flickity({
   contain: true,
   autoPlay: true,
@@ -369,6 +443,8 @@ $('.product-detail-close').on('click', function() {
   $('.product-detail').addClass('hide');
 });
 
+
+
   $('.modal-video').on('hidden.bs.modal', function (e) {
     $('.modal-video iframe').attr('src', $('.modal-video iframe').attr('src'));
   });
@@ -400,58 +476,10 @@ $(window).on('load resize', function(){
 });
 
 
-  $.getJSON("https://spreadsheets.google.com/feeds/list/1xcMllcU6-iuyTO-y1Uky9EjbgFzNUdquimWi2hhblkk/1/public/values?alt=json", function(data) {
-
-    var sheetData = data.feed.entry;
-
-    var i;
-    for (i = 0; i < sheetData.length; i++) {
-
-      var id = data.feed.entry[i]['gsx$title']['$t'];
-      var expected = data.feed.entry[i]['gsx$desc']['$t'];
-      var result = data.feed.entry[i]['gsx$poster']['$t'];
-      var status = data.feed.entry[i]['gsx$rating']['$t'];
-      var lastupdate = data.feed.entry[i]['gsx$linkurl']['$t'];
-      var proupdate = data.feed.entry[i]['gsx$shortid']['$t'];
-
-
-
-
-
-
-      document.getElementById('displayz').innerHTML += (
-
-        '<section class="product-detail \n' +
-        proupdate +
-        ' hide">\n' +
-        '<div class="product-detail-inner"><a class="product-detail-close">X</a> \n' +
-        '<div class="product-detail-image"><img src=""/></div>\n' +
-        '<div class="product-detail-text">\n' +
-        '<h3>' +
-        id +
-        '</h3>\n' +
-        '<p>' +
-        expected +
-        '</p>\n' +
-        '<a data-target=".modal-1" data-toggle="modal" data-the-video="' +
-        lastupdate +
-        '" class="btn btn-primary">Fragman</a>\n' +
-        '</div>\n' +
-        '</div>\n' +
-        '</section>'
-
-
-      );
-
-$('.product-detail-close').on('click', function() {
-  $('.product-detail').addClass('hide');
-});
+//javascript def //
 
     }
   });
-  
-
-
 
 
 </script>
