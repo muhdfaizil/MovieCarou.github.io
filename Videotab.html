@@ -1,0 +1,37 @@
+ <html>
+ <head>
+    <!-- Load dependent stylesheets. -->
+    <link rel="stylesheet" href="https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video-js.css" />
+    
+    <script>
+    
+    src = "http://dl.dropbox.com/s/ecx4wmhof5g5n3o/SOORARAI%20POTTRU%20%282020%29%20Tamil%C2%A0HD.mkv?raw=1"
+      
+      srt = "https://raw.githubusercontent.com/muhdfaizil/ALAengerst/main/sorarai.vtt"
+    
+    function setvideo(src) {
+    document.getElementById('contain').innerHTML = '<video id="content_video" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" width="640" height="360"><source src="'+src+'" type="video/mp4"><track label="English" kind="subtitles" srclang="en" src="'+srt+'" default /></video>';
+    document.getElementById('video_ctrl').play();
+}
+
+    </script>
+    
+    
+  </head>
+
+  <body onload="setvideo(src)">
+      
+     
+
+
+    <div id="contain" class='container'>
+  
+    </div>
+
+    <script>
+     setTimeout(function() {  var player = videojs('content_video'); }, 1000);
+    </script>
+  </body>
+  <script src='https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video.js'></script>
+ 
+ </html>
