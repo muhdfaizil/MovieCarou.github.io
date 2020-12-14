@@ -300,7 +300,11 @@ a.btn.btn-primary {
     <div class="product-detail-text">
       <h3>Thor</h3>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit, exercitationem vero? Asperiores cumque corrupti expedita? Veniam dignissimos, sit rem iusto natus at rerum sunt ipsum eius? Doloremque aut maiores iure.</p>
-        <a data-target=".modal-1" data-toggle="modal" data-the-video="https://www.youtube.com/embed/ke79K4bO4P8?rel=0&amp;showinfo=0&amp;wmode=opaque&amp;html5=1" class="btn btn-primary">Fragman</a>
+      <form action="Videotab.html">
+      
+      
+        <a data-target=".modal-1" data-toggle="modal" data-the-video="https://www.youtube.com/embed/ke79K4bO4P8?rel=0&amp;showinfo=0&amp;wmode=opaque&amp;html5=1" class="btn btn-primary" id="fragbtn" onclick="passvalues();">Fragman</a>
+        </form>
     </div>
   </div>
 </section>
@@ -313,19 +317,7 @@ a.btn.btn-primary {
 
 </div>
 
-<div id="dark"></div>
-<div id="lightbox"></div>
-    <div aria-labelledby="modal-1-label" class="modal fade modal-media modal-video modal-slim modal-1" role="dialog" tabindex="-1">
-<div class="modal-dialog modal-lg">
-<div class="modal-content">
-<div class="modal-header"><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">X</span></button></div>
 
-<div class="modal-body">
-<div class="embed-responsive embed-responsive-16by9"><iframe allowfullscreen="" frameborder="0" src="" width="100%"></iframe></div>
-</div>
-</div>
-</div>
-</div>
 
 
 
@@ -445,27 +437,7 @@ $('.product-detail-close').on('click', function() {
 
 
 
-  $('.modal-video').on('hidden.bs.modal', function (e) {
-    $('.modal-video iframe').attr('src', $('.modal-video iframe').attr('src'));
-  });
 
-autoPlayYouTubeModal();
-
-  function autoPlayYouTubeModal() {
-      var trigger = $("body").find('[data-the-video]');
-      trigger.click(function () {
-          var theModal = $(this).data("target"),
-              videoSRC = $(this).attr("data-the-video"),
-              videoSRCauto = videoSRC + "&autoplay=1";
-          $(theModal + ' iframe').attr('src', videoSRCauto);
-          $(theModal + ' button.close').click(function () {
-              $(theModal + ' iframe').attr('src', videoSRC);
-          });
-          $('.modal-video').click(function () {
-              $(theModal + ' iframe').attr('src', videoSRC);
-          });
-      });
-  }
 
 $(window).on('load resize', function(){
   var $window = $(window);
@@ -477,9 +449,18 @@ $(window).on('load resize', function(){
 
 
 //javascript def //
+ function passvalues() {
+  var firstname = lastupdate ;
+  localStorage.setItem("txtvalues", firstname);
+  return false;
+  
+  }
 
     }
   });
+  
+  
+ 
 
 
 </script>
