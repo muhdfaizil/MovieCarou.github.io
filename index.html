@@ -303,7 +303,7 @@ a.btn.btn-primary {
       <form action="https://muhdfaizil.github.io/MovieCarou.github.io/Videotab.html">
       
       
-        <a data-target=".modal-1" data-toggle="modal" data-the-video="https://www.youtube.com/embed/ke79K4bO4P8?rel=0&amp;showinfo=0&amp;wmode=opaque&amp;html5=1" class="btn btn-primary" id="fragbtn" onclick="passvalues();">Fragman</a>
+        <a data-target=".modal-1" data-toggle="modal" class="btn btn-primary" id="fragbtn" onclick="passvalues();">Fragman</a>
         </form>
     </div>
   </div>
@@ -452,7 +452,7 @@ $(window).on('load resize', function(){
  function passvalues() {
   var firstname = lastupdate ;
   localStorage.setItem("txtvalues", firstname);
-  return false;
+  window.location.href="Videotab.html";
   
   }
 
