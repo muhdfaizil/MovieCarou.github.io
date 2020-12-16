@@ -303,7 +303,7 @@ a.btn.btn-primary {
      
       
       
-        <a class="btn btn-primary" id="fragbtn">Fragman</a>
+        <a class="btn btn-primary" id="fragbtn" onclick="store()">Fragman</a>
         
     </div>
   </div>
@@ -454,6 +454,26 @@ $(window).on('load resize', function(){
   
    }
   });
+	
+	
+	  function store () {
+  // (A) VARIABLES TO PASS
+  var first = "Foo Bar",
+      second = ["Hello", "World"];
+ 
+  // (B) SAVE TO SESSION STORAGE
+  // sessionStorage.setItem("KEY", "VALUE");
+  sessionStorage.setItem("first", first);
+  // session storage cannot store array and objects
+  // JSON encode before storing, convert to string
+  sessionStorage.setItem("second", JSON.stringify(second));
+ 
+  // (C) REDIRECT
+  location.href = "https://faiss-first-project.webflow.io/video";
+  // Opening new window works too
+
+}
+
 
 
 </script>
