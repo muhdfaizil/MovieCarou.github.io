@@ -302,9 +302,11 @@ a.btn.btn-primary {
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit, exercitationem vero? Asperiores cumque corrupti expedita? Veniam dignissimos, sit rem iusto natus at rerum sunt ipsum eius? Doloremque aut maiores iure.</p>
     
       
-      <form method="get" action="Videotab.html">
-        <a data-target=".modal-1" data-toggle="modal" class="btn btn-primary" id="fragbtn" onclick="passvalues();">Fragman</a>
-	    </form>
+    
+        <a data-target=".modal-1" data-toggle="modal" class="btn btn-primary" id="fragbtn">Fragman</a>
+	    
+	     <div id="results"></div>
+	    
     </div>
   </div>
 </section>
@@ -449,17 +451,34 @@ $(window).on('load resize', function(){
 
 
 //javascript def //
- function passvalues() {
-  var firstname = lastupdate ;
-  localStorage.setItem("txtvalues", firstname);
-  window.location.href="Videotab.html";
-  
-  }
+  function bindEvent(element, eventName, eventHandler) {
+            if (element.addEventListener) {
+                element.addEventListener(eventName, eventHandler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + eventName, eventHandler);
+            }
+        }
+	    
+	    
+    // Send a message to the parent
+        var sendMessage = function (msg) {
+            // Make sure you are sending a string, and to stringify JSON
+            window.parent.postMessage(msg, '*');
+        };
 
-    }
-  });
-  
-  
+  var results = document.getElementById('results'),
+            messageButton = document.getElementById('fragbtn');
+	    
+	    
+	     bindEvent(window, 'message', function (e) {
+            results.innerHTML = e.data;
+        });
+
+        // Send random message data on every button click
+        bindEvent(messageButton, 'click', function (e) {
+            var random = "LOL";
+            sendMessage('' + random);
+        });
  
 
 
